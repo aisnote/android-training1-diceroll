@@ -18,12 +18,20 @@ class MainActivity : AppCompatActivity() {
 
         var countUpButton: Button = findViewById(R.id.count_up_button)
         countUpButton.setOnClickListener{ countUp() }
+
+        var resetButton: Button = findViewById(R.id.reset_button)
+        resetButton.setOnClickListener{ reset()}
+    }
+
+    private fun reset() {
+        var resultText: TextView = findViewById(R.id.result_text)
+        resultText.text = "0"
     }
 
     private fun countUp() {
         var resultText: TextView = findViewById(R.id.result_text)
         var result = resultText.text.toString()
-        if (result == "Hello World") {
+        if (result == "Hello World!") {
             resultText.text = "1"
         } else if (result == "6") {
 
