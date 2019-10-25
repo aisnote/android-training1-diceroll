@@ -10,18 +10,34 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var diceImage: ImageView
+    lateinit var diceImage2: ImageView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        diceImage = findViewById(R.id.dice_image)
+        diceImage2 = findViewById(R.id.dice_image2)
+
         var rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener{ rollDive() }
 
-        var countUpButton: Button = findViewById(R.id.count_up_button)
-        countUpButton.setOnClickListener{ countUp() }
+    }
 
-        var resetButton: Button = findViewById(R.id.reset_button)
-        resetButton.setOnClickListener{ reset()}
+    // Coding challenge: https://codelabs.developers.google.com/codelabs/kotlin-android-training-images-compat/#7
+    private fun getRandomDiceImage(): Int {
+        val randomInt = Random().nextInt(6) + 1
+
+        val drawableResource = when (randomInt) {
+            1 -> R.drawable.dice_1
+            2 -> R.drawable.dice_2
+            3 -> R.drawable.dice_3
+            4 -> R.drawable.dice_4
+            5 -> R.drawable.dice_5
+            else -> R.drawable.dice_6
+        }
+        return drawableResource
     }
 
     private fun reset() {
@@ -44,20 +60,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun rollDive() {
 //        Toast.makeText(this, "button clicked", Toast.LENGTH_SHORT).show()
-        val randomInt = Random().nextInt(6) + 1
-
-        val diceImage: ImageView = findViewById(R.id.dice_image)
-
-        val drawableResource = when (randomInt) {
-            1 -> R.drawable.dice_1
-            2 -> R.drawable.dice_2
-            3 -> R.drawable.dice_3
-            4 -> R.drawable.dice_4
-            5 -> R.drawable.dice_5
-            else -> R.drawable.dice_6
-        }
+        val drawableResource = getRandomDiceImage()
 
         diceImage.setImageResource(drawableResource)
+
+        val drawableResource2 = getRandomDiceImage()
+
+        diceImage2.setImageResource(drawableResource2);
     }
 
 }
