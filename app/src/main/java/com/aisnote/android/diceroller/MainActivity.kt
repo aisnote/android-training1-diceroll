@@ -23,6 +23,12 @@ class MainActivity : AppCompatActivity() {
         var rollButton: Button = findViewById(R.id.roll_button)
         rollButton.setOnClickListener{ rollDive() }
 
+        var clearButton: Button = findViewById(R.id.clear_button)
+        clearButton.setOnClickListener{
+            diceImage.setImageResource(R.drawable.empty_dice)
+            diceImage2.setImageResource(R.drawable.empty_dice)
+        }
+
     }
 
     // Coding challenge: https://codelabs.developers.google.com/codelabs/kotlin-android-training-images-compat/#7
